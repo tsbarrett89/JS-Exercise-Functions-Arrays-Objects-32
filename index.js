@@ -36,15 +36,17 @@ function addNumbers(num1, num2) {
  * the returned value should look like: 'Goodbye, Andy. Have a great day.'
  * 
 */
-function sayGoodbye(/* code here */) {
-  /* code here */
+function sayGoodbye(name, location, age) {
+  return `Goodbye, ${name}. Go back to ${location}. Have a great ${age} birthday.`
 }
+
+console.log(sayGoodbye('Andy', 'LA', 34))
 
 /**
  * ### Challenge `temperatureCtoF`
  * 
  * @instructions
- * This function should take an a temperature in celsius as an argument,
+ * This function should take in a temperature in celsius as an argument,
  * and return the temperature in fahrenheit, rounded to the nearest whole number. 
  * 
  * For example, if we invoke `temperatureCtoF`
@@ -52,11 +54,14 @@ function sayGoodbye(/* code here */) {
  * the returned value should be: 75
  * 
  * Hint 1: The formula for converting celsius to fahrenheit is t*9/5 + 32 where t is the temperature in celsius.
- * Hint 2: There is a very easy way to round numbers in JS. Do a google search to find out how. 
+ * Hint 2: There is a very easy way to round numbers in JS. Do a google search to find out how.   PEDMAS
 */
-function temperatureCtoF(/* code here */) {
-  /* code here */
+function temperatureCtoF(tempC) {
+  const farenheit = tempC*9/5 + 32
+  return Math.round(farenheit)
 }
+
+console.log(temperatureCtoF(24))
 
 /**
  * ### Challenge `temperatureInF`
@@ -75,10 +80,20 @@ function temperatureCtoF(/* code here */) {
  * 
  * Hint: You can call your `temperatureCtoF` function from inside `temperatureInF`.
 */
-function temperatureInF(/* code here */) {
-  /* code here */
+function temperatureInF(temp, unit) {
+  if(unit === 'F'){
+    return `${Math.round(temp)}${unit}`
+  } else if(unit === 'C'){
+    const farenheit = temp*9/5 + 32
+    return `${Math.round(farenheit)}F`
+  } else {
+    return 'I can only convert celsius to farhenheit'
+  }
 }
 
+console.log(temperatureInF(88, 'F'))
+console.log(temperatureInF(24, 'C'))
+console.log(temperatureInF(5, 'K'))
 
 /**
  * ### Challenge `makePersonObject`
@@ -96,9 +111,28 @@ function temperatureInF(/* code here */) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
-  /* code here */
+const personArray = []
+const personObject2 = {
+  id: 4,
+  name: "Name",
+  email: "noneya@noneya.com"
 }
+
+function makePersonObject(id, name, email) {
+  const personObj = {
+    id: id,
+    name: name,
+    email: email
+  }
+  personArray.push(personObj)
+  console.log(personArray)
+
+  return personObj
+}
+
+console.log(makePersonObject(1, 'Alex', 'alex@email.email'))
+console.log(makePersonObject(2, 'Deborah', 'deb@email.email'))
+console.log(makePersonObject(3, 'Barbora', 'barb@email.email'))
 
 /**
  * ### Challenge `getName`
@@ -113,9 +147,12 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
-  /* code here */
+function getName(object) {
+  return `Hello, my name is ${object.name}`
 }
+
+console.log(getName(personArray[0]))
+console.log(getName(personObject2))
 
 
 /**
@@ -133,9 +170,18 @@ function getName(/* code here */) {
  * passing in [ 'orange', 'grape', 'apple', 'banana', 'mango' ] as the argument,
  * the returned value should be: 2.
 */
-function appleIndex(/* code here */) {
-  /* code here */
+function appleIndex(array) {
+  // for loop (where does it start; when to continue; what do we do after each iteration)
+  for(let i=0; i < array.length; i++){
+    console.log(i)
+    if(array[i] === 'apple'){
+      array.splice(i, 2)
+      return array;
+    }
+  }
 }
+
+console.log(appleIndex([ 'orange', 'grape', 'apple', 'banana', 'mango' ]))
 
 /**
  * ### Challenge `isItAnApple`
